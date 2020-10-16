@@ -3,12 +3,22 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     Start-Process PowerShell -Verb RunAs "-NoProfile -ExecutionPolicy Bypass -Command `"cd '$pwd'; & '$PSCommandPath';`"";
     exit;
 }
+# packages to install
+# - git
+# - nodejs
 
 try {
     node --version
 }
 catch {
-   # install nodejs
    choco.exe install -y nodejs.install
 }
+
+try {
+    git --version
+}
+catch {
+   choco.exe install -y git.install
+}
+
 
