@@ -8,17 +8,15 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 # - nodejs
 
 try {
-    node --version
-}
-catch {
-   choco.exe install -y nodejs.install
+    $version = "$(git --version)".Split(' ')[-1]
+    $versions.git = $version
+} catch {
+    choco install -y git.install
 }
 
 try {
-    git --version
+    $version = "$(node --version)".Substring(1)
+    $versions.node = $version
+} catch {
+    choco install -y nodejs.install
 }
-catch {
-   choco.exe install -y git.install
-}
-
-

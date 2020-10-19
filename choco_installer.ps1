@@ -4,7 +4,8 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     exit;
 }
 try {
-    choco --version
+    $version = choco --version
+    $versions.choco = $version
 }
 catch {
    # install chocolatey
